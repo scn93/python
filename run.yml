@@ -1,0 +1,32 @@
+# Créer le dossier de workflow
+mkdir -p .github/workflows
+
+# Créer le fichier run.yml
+echo -e "name: FastAPI run\n\
+\n\
+on:\n\
+  push:\n\
+    branches: [ 'main' ]\n\
+  pull_request:\n\
+    branches: [ 'main' ]\n\
+\n\
+jobs:\n\
+  fastapi-run:\n\
+    runs-on: ubuntu-20.04\n\
+\n\
+    steps:\n\
+      - name: Checkout\n\
+        uses: actions/checkout@v4\n\
+\n\
+      - name: Set up Python\n\
+        uses: actions/setup-python@v2\n\
+        with:\n\
+          python-version: '3.7'\n\
+\n\
+      - name: Install Backend Dependencies\n\
+        run: |\n\
+          python -m pip install --upgrade pip\n\
+          pip install -r ./requirements.txt\n\
+\n\
+      - name: Start Backend Server\n\
+        run: uvicorn main:app --reload &" > .github/workflows/run.yml
