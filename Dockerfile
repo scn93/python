@@ -1,8 +1,6 @@
-FROM node
+FROM python:3.6
 WORKDIR /app
-ADD package.json /app/ 
-RUN npm install
-ADD . /app
-EXPOSE 8000
-ENTRYPOINT ["npm", "start"]
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
 

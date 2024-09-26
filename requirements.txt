@@ -1,6 +1,2 @@
-pydantic
-fastapi
-uvicorn
-python-multipart
-websockets
-
+flask
+redis
